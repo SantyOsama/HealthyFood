@@ -1,7 +1,4 @@
-﻿using HealthyFood.Models;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
+﻿
 namespace HealthyFood.Models
 {
     public class Review

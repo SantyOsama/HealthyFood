@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using HealthyFood.Repositories;
-
+﻿
 namespace HealthyFood.Controllers
 {
     public class ProductController : Controller

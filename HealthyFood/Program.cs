@@ -16,6 +16,8 @@ namespace HealthyFood
             builder.Services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
 
+
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<ICategoryRepo, CategoryRepo>();

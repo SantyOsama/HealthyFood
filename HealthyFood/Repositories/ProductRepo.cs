@@ -1,8 +1,4 @@
-﻿using HealthyFood.Models;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
+﻿
 namespace HealthyFood.Repositories
 {
     public class ProductRepo : IProductRepo

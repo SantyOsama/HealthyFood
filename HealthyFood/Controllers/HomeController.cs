@@ -1,6 +1,3 @@
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using HealthyFood.Models;
 
 namespace HealthyFood.Controllers
 {

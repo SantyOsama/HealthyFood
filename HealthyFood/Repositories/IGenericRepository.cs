@@ -1,4 +1,5 @@
-﻿namespace HealthyFood.Repositories
+﻿
+namespace HealthyFood.Repositories
 {
     public interface IGenericRepository<T>
     {

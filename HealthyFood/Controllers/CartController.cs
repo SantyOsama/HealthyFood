@@ -1,8 +1,4 @@
-﻿using HealthyFood.Models;
-using HealthyFood.Repositories;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-
+﻿
 public class CartController : Controller
 {
     private readonly IProductRepo productRepo;
