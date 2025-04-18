@@ -64,9 +64,9 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                     <a asp-controller="Home" asp-action="Index" class="nav-item nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Home"&&ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">Home</a>
-                    <a asp-controller="Home" asp-action="About" class="nav-item nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Home" && ViewContext.RouteData.Values["Action"].ToString() == "About" ? "active" : "")">About Us</a>
                     <a asp-controller="Product" asp-action="Index" class="nav-item nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Product" ? "active" : "")">Products</a>
-                    <div class="nav-item dropdown">
+                    <a asp-controller="Home" asp-action="About" class="nav-item nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Home" && ViewContext.RouteData.Values["Action"].ToString() == "About" ? "active" : "")">About Us</a>
+                   @*  <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0">
                             <a asp-controller="Blog" asp-action="Index" class="dropdown-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Blog" ? "active" : "")">Blog Grid</a>
@@ -74,7 +74,7 @@
                             <a asp-controller="Testimonial" asp-action="Index" class="dropdown-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Testimonial" ? "active" : "")">Testimonial</a>
                             <a asp-controller="Home" asp-action="Error" class="dropdown-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Home" && ViewContext.RouteData.Values["Action"].ToString() == "Error" ? "active" : "")">404 Page</a>
                         </div>
-                    </div>
+                    </div> *@
                     <a asp-controller="Home" asp-action="Contact" class="nav-item nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Home" && ViewContext.RouteData.Values["Action"].ToString() == "Contact" ? "active" : "")">Contact Us</a>
                 </div>
                 <div class="d-none d-lg-flex ms-2">

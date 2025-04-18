@@ -76,6 +76,7 @@ namespace HealthyFood.Controllers
                     if (passwordCorrect)
                     {
                         var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                        // await signInManager.SignInAsync(user, model.RememberMe)
 
                         if (result.Succeeded)
                         {

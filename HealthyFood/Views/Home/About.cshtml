@@ -1,1 +1,141 @@
-﻿
+﻿@{
+    ViewBag.Title = "About Us";
+}
+
+<div class="about-page">
+
+    <!-- Hero Section -->
+    <section class="text-white py-5 mb-5 text-center wow fadeInUp" style="background:#3CB815">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">About Healthy Harvest</h1>
+            <p class="lead">From farm to table, we're on a mission to deliver the freshest produce to your doorstep</p>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="container mb-5">
+        <div class="row align-items-center wow fadeInUp">
+            <div class="col-lg-6 wow fadeInUp">
+                <img src="https://images.pexels.com/photos/235725/pexels-photo-235725.jpeg"
+                     alt="Healthy Harvest Farm"
+                     class="img-fluid rounded shadow-lg"
+                     style="max-height: 300px; object-fit: cover; width: 100%;" />
+            </div>
+            <div class="col-lg-6 wow fadeInUp">
+                <h2 class="mb-4">Our Story</h2>
+                <p class="lead">Fresh Harvest was founded in 2015 with a simple mission: connect local farmers with health-conscious consumers.</p>
+                <p>We started as a small farmer's market stand in Garden City... </p>
+                <p>Today, we partner with over 50 local farms and deliver to thousands of households across the region.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Mission & Values -->
+    <section class="bg-white py-5 mb-5">
+        <div class="container text-center wow fadeInUp">
+            <h2 class="mb-3">Our Mission & Values</h2>
+            <p class="lead mb-5">What drives us every day</p>
+            <div class="row g-4 wow fadeInUp">
+                <div class="col-md-4 wow fadeInUp">
+                    <div class="card h-100 border-0 shadow-sm rounded-4">
+                        <div class="card-body p-4 text-center">
+                            <div class="icon-circle bg-success-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 70px; height: 70px;">
+                                <i class="bi bi-tree  fs-2" style="color:#3CB815"></i>
+                            </div>
+                            <h5 class="card-title">Fresh & Local</h5>
+                            <p>All our products come from farms within a 100-mile radius to ensure maximum freshness.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 wow fadeInUp">
+                    <div class="card h-100 border-0 shadow-sm rounded-4">
+                        <div class="card-body p-4 text-center">
+                            <div class="icon-circle bg-success-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 70px; height: 70px;">
+                                <i class="bi bi-heart fs-2" style="color:#3CB815"></i>
+                            </div>
+                            <h5 class="card-title">Sustainable Practices</h5>
+                            <p>We’re committed to eco-friendly farming and packaging to protect the planet.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 wow fadeInUp">
+                    <div class="card h-100 border-0 shadow-sm rounded-4">
+                        <div class="card-body p-4 text-center">
+                            <div class="icon-circle bg-success-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 70px; height: 70px;">
+                                <i class="bi bi-people fs-2" style="color:#3CB815"></i>
+                            </div>
+                            <h5 class="card-title">Community Support</h5>
+                            <p>We support local farmers and fair pricing while promoting sustainable living.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Team Section -->
+    <section class="container mb-5">
+        <div class="text-center mb-5">
+            <h2>Meet Our Team</h2>
+            <p class="lead">The passionate people behind Healthy Harvest</p>
+        </div>
+        <div class="row g-4 wow fadeInUp">
+            @foreach (var member in new[] {
+            new { Name = "Santy Osama", Title = "Founder & CEO", Img = "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=761&q=80", Desc = "Software Engineer || ITI 9 Month Program || PWD Track" },
+            new { Name = "Hossam Adel", Title = "Operations Manager", Img = "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=687&q=80", Desc = "Software Engineer || ITI 9 Month Program || PWD Track" }
+            }) 
+            {
+                <div class="col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <img src="@member.Img" alt="@member.Name" class="card-img-top rounded-circle mx-auto d-block" style="height: 15rem; width: 15rem; object-fit: cover; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);" />
+                        <div class="card-body text-center">
+                            <h5 class="card-title mb-1">@member.Name</h5>
+                            <p class="text-muted">@member.Title</p>
+                            <p class="card-text">@member.Desc</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+
+    <!-- Achievements Section -->
+    <section class="bg-light py-5 mb-5">
+        <div class="container text-center wow fadeInUp">
+            <h2 class="mb-4">Our Achievements</h2>
+            <p class="lead mb-5">Milestones we're proud of</p>
+            <div class="row g-4 wow fadeInUp">
+                <div class="col-md-4 wow fadeInUp">
+                    <i class="bi bi-award fs-1 mb-2" style="color:#3CB815"></i>
+                    <h5>Best Local Business 2023</h5>
+                    <p>Awarded by the Chamber of Commerce for supporting the local economy.</p>
+                </div>
+                <div class="col-md-4 wow fadeInUp">
+                    <i class="bi bi-emoji-smile fs-1 mb-2" style="color:#3CB815"></i>
+                    <h5>10,000+ Happy Customers</h5>
+                    <p>Trusted by thousands for weekly fresh produce delivery.</p>
+                </div>
+                <div class="col-md-4 wow fadeInUp">
+                    <i class="bi bi-geo-alt fs-1 mb-2" style="color:#3CB815"></i>
+                    <h5>50+ Local Farm Partners</h5>
+                    <p>Building lasting partnerships with sustainable farms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="container mb-2">
+        <div class="text-white rounded p-5 text-center shadow-lg wow fadeInUp" style="background:#3CB815">
+            <h2 class="mb-3">Ready to taste the difference?</h2>
+            <p class="lead mb-4">Join our community of food lovers who care about quality and sustainability.</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a asp-action="Index" asp-controller="Product" class="btn btn-light rounded-pill py-sm-3 px-sm-5">Products</a>
+            </div>
+        </div>
+    </section>
+
+</div>
