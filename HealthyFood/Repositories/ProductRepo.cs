@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
+
 namespace HealthyFood.Repositories
 {
     public class ProductRepo : IProductRepo
@@ -43,24 +45,40 @@ namespace HealthyFood.Repositories
         {
             await context.SaveChangesAsync();
         }
-        public async Task<(IEnumerable<Product> Products, int TotalPages)> GetPagedProductsAsync(int pageNumber, int pageSize, string category)
+        public async Task<(IEnumerable<Product> products, int totalPages)> GetPagedProductsAsync(int pageNumber, int pageSize, string category, string query)
         {
-            var query = context.Products.AsQueryable();
+            var queryable = context.Products.AsQueryable();
 
             if (category != "ALL")
             {
-                query = query.Where(p => p.Category.Name == category);
+                queryable = queryable.Where(p => p.Category.Name == category);
             }
 
-            var totalItems = await query.CountAsync();
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                queryable = queryable.Where(p => p.Name.Contains(query));
+            }
+
+            var totalItems = await queryable.CountAsync();
             var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
 
-            var products = await query
+            var products = await queryable
                 .Include(p => p.Category)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
+
             return (products, totalPages);
         }
+
+
+
+        public async Task<IEnumerable<Product>> SearchAsync(string query)
+        {
+            return await context.Products
+                .Where(p => p.Name.Contains(query))  
+                .ToListAsync();
+        }
+
     }
 }

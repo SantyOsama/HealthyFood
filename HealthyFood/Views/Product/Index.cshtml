@@ -15,13 +15,21 @@
                     <h1 class="display-5 mb-3">Our Products</h1>
                     <p>
                         We take pride in offering a wide selection of fresh and high-quality products to meet all your needs. Whether you're looking for farm-fresh vegetables, juicy seasonal fruits, or premium grocery essentials, we ensure that every item is carefully sourced and handled with care.
-                        Explore our collection and enjoy the best nature has to offer, delivered with quality and freshness in every bite!.
+                        Explore our collection and enjoy the best nature has to offer, delivered with quality and freshness in every bite!
                     </p>
                 </div>
             </div>
+
             <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
                 <ul class="nav nav-pills d-inline-flex justify-content-end mb-5">
-
+                    <li class="nav-item me-5">
+                        <form id="searchForm" asp-controller="Product" asp-action="Search" method="get" class="d-flex">
+                            <input id="searchInput" type="text" name="query" class="form-control form-control-sm" placeholder="Search..." />
+                            <button type="submit" class="border-0">
+                                <small class="fa fa-search text-body"></small>
+                            </button>
+                        </form>
+                    </li>
                     <li class="nav-item me-2">
                         <a asp-controller="Product" asp-action="Index" asp-route-category="ALL" class="btn btn-outline-success filter-button @((ViewBag.Category == "ALL") ? "active" : "")">All</a>
                     </li>
@@ -35,120 +43,148 @@
             </div>
         </div>
 
-<div class="tab-content">
-    <div id="tab-1" class="tab-pane fade show p-0 active">
-        <div class="row g-4">
-            @foreach (var product in Model)
-            {
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="product-item">
-                        <div class="position-relative bg-light overflow-hidden">
-                            @{
-                                if (product.Category.Name=="Fruits"){
-                                    <img class="img-fluid w-100" src="/img/product-8.jpg" alt="@product.Name">
-                                }
-                                else{
-                                    <img class="img-fluid w-100" src="/img/product-1.jpg" alt="@product.Name">
+        <div class="row">
+                    <div class="col-lg-3" style="position: sticky; top: 10rem; height: 100%; overflow-y: auto;background-color: #eafaf1">
+                <!-- Sidebar Widget with Improved Design and Sticky Position -->
+                <div class="sidebar-widget bg-light p-4 mb-4">
+                    <h5 class="mb-3 text-center">Filter by Price</h5>
+                    <form id="priceFilterForm" asp-controller="Product" asp-action="Index" method="get">
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" value="0-5" id="price1" name="priceRange" @(ViewBag.SelectedPrice == "0-50" ? "checked" : "")>
+                            <label class="form-check-label" for="price1">Under $5</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" value="5-10" id="price2" name="priceRange" @(ViewBag.SelectedPrice == "50-100" ? "checked" : "")>
+                            <label class="form-check-label" for="price2">$5 - $10</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" value="10-15" id="price3" name="priceRange" @(ViewBag.SelectedPrice == "100-200" ? "checked" : "")>
+                            <label class="form-check-label" for="price3">$10 - $15</label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" value="15+" id="price4" name="priceRange" @(ViewBag.SelectedPrice == "200+" ? "checked" : "")>
+                            <label class="form-check-label" for="price4">$15 and above</label>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary w-100">Apply Filters</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
+            <div class="col-lg-9">
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane fade show p-0 active">
+                        <div id="productsContainer">
+                            <div class="row g-4">
+                                @foreach (var product in Model)
+                                {
+                                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                        <div class="product-item">
+                                            <div class="position-relative bg-light overflow-hidden">
+                                                @if (product.Category.Name == "Fruits")
+                                                {
+                                                    <img class="img-fluid w-100" src="/img/product-8.jpg" alt="@product.Name">
+                                                }
+                                                else
+                                                {
+                                                    <img class="img-fluid w-100" src="/img/product-1.jpg" alt="@product.Name">
+                                                }
+                                                <div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>
+                                            </div>
+                                            <div class="text-center p-4">
+                                                <a class="d-block h5 mb-2" href="">@product.Name</a>
+                                                <span class="text-primary me-1">$@product.Price</span>
+                                            </div>
+                                            <div class="text-center p-2">
+                                                <span class="badge bg-info">@(product.Category != null ? product.Category.Name : "No Category")</span>
+                                            </div>
+                                            <div class="d-flex border-top">
+                                                <small class="w-50 text-center border-end py-2">
+                                                    <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>View detail</a>
+                                                </small>
+                                                <small class="w-50 text-center py-2">
+                                                    <a class="text-body" href="javascript:void(0);" onclick="addToCart(@product.ProductId)">
+                                                        <i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart
+                                                    </a>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
                                 }
-                            }
-                            
-                            <div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>
-                        </div>
-                        <div class="text-center p-4">
-                            <a class="d-block h5 mb-2" href="">@product.Name</a>
-                            <span class="text-primary me-1">$@product.Price</span>
-                        </div>
-                        <div class="text-center p-2">
-                            <span class="badge bg-info">@(product.Category != null ? product.Category.Name : "No Category")</span>
-                        </div>
-                        <div class="d-flex border-top">
-                            <small class="w-50 text-center border-end py-2">
-                                <a class="text-body" href=""><i class="fa fa-eye text-primary me-2"></i>View detail</a>
-                            </small>
-                            <small class="w-50 text-center py-2">
-                                        <a class="text-body" href="#";" onclick="addToCart(@product.ProductId)">
-                                            <i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart
-                                        </a>
-
-                            </small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            }
+            </div>
         </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center mt-4">
+                @if (currentPage > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="Product" asp-action="Index" asp-route-pageNumber="@(currentPage - 1)" asp-route-pageSize="8" asp-route-category="@ViewBag.Category">Previous</a>
+                    </li>
+                }
+
+                @for (int i = 1; i <= totalPages; i++)
+                {
+                    <li class="page-item @(i == currentPage ? "active" : "")">
+                        <a class="page-link" asp-controller="Product" asp-action="Index" asp-route-pageNumber="@i" asp-route-pageSize="8" asp-route-category="@ViewBag.Category">@i</a>
+                    </li>
+                }
+
+                @if (currentPage < totalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="Product" asp-action="Index" asp-route-pageNumber="@(currentPage + 1)" asp-route-pageSize="8" asp-route-category="@ViewBag.Category">Next</a>
+                    </li>
+                }
+            </ul>
+        </nav>
     </div>
 </div>
-<!-- Pagination -->
-<nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center mt-4">
-        @if (currentPage > 1)
-        {
-            <li class="page-item">
-                <a class="page-link" asp-controller="Product" asp-action="Index" asp-route-pageNumber="@(currentPage - 1)" asp-route-pageSize="8" asp-route-category="@ViewBag.Category">Previous</a>
-            </li>
-        }
-
-        @for (int i = 1; i <= totalPages; i++)
-        {
-            <li class="page-item @(i == currentPage ? "active" : "")">
-                <a class="page-link" asp-controller="Product" asp-action="Index" asp-route-pageNumber="@i" asp-route-pageSize="8" asp-route-category="@ViewBag.Category">@i</a>
-            </li>
-        }
-
-        @if (currentPage < totalPages)
-        {
-            <li class="page-item">
-                <a class="page-link" asp-controller="Product" asp-action="Index" asp-route-pageNumber="@(currentPage + 1)" asp-route-pageSize="8" asp-route-category="@ViewBag.Category">Next</a>
-            </li>
-        }
-    </ul>
-</nav>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <script>
-function addToCart(productId) {
-    $.ajax({
-        url: '/Cart/AddToCart',
-        type: 'POST',
-        data: { id: productId },
-        success: function(response) {
-            if(response.success) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Product added to cart',
-                    text: response.message,
-                    confirmButtonText: 'OK',
-                    position:"center",
-                    background: '#eafaf1',
-                    confirmButtonColor: '#28a745',
-                    showConfirmButton: true,
-                    timer: 3000  
-                });
-            } else {
+    function addToCart(productId) {
+        $.ajax({
+            url: '/Cart/AddToCart',
+            type: 'POST',
+            data: { id: productId },
+            success: function (response) {
+                if (response.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Product added to cart',
+                        text: response.message,
+                        confirmButtonText: 'OK',
+                        position: "center",
+                        background: '#eafaf1',
+                        confirmButtonColor: '#28a745'
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: response.message,
+                        confirmButtonText: 'Try again',
+                        position: "center",
+                        background: '#f8d7da',
+                        confirmButtonColor: '#dc3545'
+                    });
+                }
+            },
+            error: function () {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Error occurred',
-                    text: response.message,
-                    confirmButtonText: 'OK',
-                    showConfirmButton: true,
-                    timer: 3000
+                    title: 'Error',
+                    text: 'There was an issue adding the product to the cart.',
+                    confirmButtonText: 'Try again'
                 });
             }
-        },
-        error: function(xhr, status, error) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Connection error',
-                text: 'Please try again later',
-                confirmButtonText: 'OK',
-                position: 'top-end',
-                showConfirmButton: true,
-                timer: 3000
-            });
-        }
-    });
-}
+        });
+    }
 </script>
-

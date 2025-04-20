@@ -78,9 +78,6 @@
                     <a asp-controller="Home" asp-action="Contact" class="nav-item nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Home" && ViewContext.RouteData.Values["Action"].ToString() == "Contact" ? "active" : "")">Contact Us</a>
                 </div>
                 <div class="d-none d-lg-flex ms-2">
-                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="#">
-                        <small class="fa fa-search text-body"></small>
-                    </a>
                     <a class="btn-sm-square bg-white rounded-circle ms-3" asp-controller="Account" asp-action="Login" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Account" ? "active" : "")">
                         <small class="fa fa-user text-body"></small>
                     </a>

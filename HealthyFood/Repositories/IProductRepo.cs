@@ -3,6 +3,7 @@ namespace HealthyFood.Repositories
 {
     public interface IProductRepo : IGenericRepository<Product>
     {
-        Task<(IEnumerable<Product> Products, int TotalPages)> GetPagedProductsAsync(int pageNumber, int pageSize, string category);
+        Task<(IEnumerable<Product> products, int totalPages)> GetPagedProductsAsync(int pageNumber, int pageSize, string category, string query);
+        Task<IEnumerable<Product>> SearchAsync(string query);
     }
 }
