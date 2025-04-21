@@ -21,6 +21,7 @@ namespace HealthyFood.Controllers
         {
             return View();
         }
+        [HttpGet]
         public IActionResult Contact()
         {
             return View();

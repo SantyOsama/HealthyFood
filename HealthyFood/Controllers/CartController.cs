@@ -30,7 +30,7 @@ public class CartController : Controller
 
     /********************/
     [HttpPost]
-    [HttpPost]
+    [AutoValidateAntiforgeryToken]
     public async Task<IActionResult> AddToCart(int id)
     {
         var product = await productRepo.GetByIdAsync(id);
@@ -61,7 +61,7 @@ public class CartController : Controller
     }
 
 
-
+    [HttpGet]
     public IActionResult Remove(int id)
     {
         var cart = GetCartItems();
@@ -76,6 +76,7 @@ public class CartController : Controller
 
 
     [HttpPost]
+    [AutoValidateAntiforgeryToken]
     public IActionResult UpdateQuantity(int productId, int quantity)
     {
         if (quantity < 1)
