@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthyFood.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250417182924_AddFullname")]
-    partial class AddFullname
+    [Migration("20250420185806_hossam")]
+    partial class hossam
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

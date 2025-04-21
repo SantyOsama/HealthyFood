@@ -1,4 +1,6 @@
 ﻿
+using HealthyFood.Interfaces;
+
 namespace HealthyFood.Repositories
 {
     public class OrderDetailsRepo : IOrderDetailsRepo

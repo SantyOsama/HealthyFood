@@ -1,4 +1,5 @@
 ﻿
+using HealthyFood.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace HealthyFood.Repositories
@@ -41,7 +42,7 @@ namespace HealthyFood.Repositories
             context.Products.Update(entity);
         }
 
-        private async Task SaveAsync()
+        public async Task SaveAsync()
         {
             await context.SaveChangesAsync();
         }

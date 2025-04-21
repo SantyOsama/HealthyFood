@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using HealthyFood.Models;
-using HealthyFood.Repositories;
+using HealthyFood.Interfaces;
 
 namespace HealthyFood
 {

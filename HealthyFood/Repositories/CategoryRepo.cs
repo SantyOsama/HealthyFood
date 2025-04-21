@@ -1,4 +1,7 @@
 ﻿
+using System.Collections;
+using HealthyFood.Interfaces;
+
 namespace HealthyFood.Repositories
 {
     public class CategoryRepo : ICategoryRepo
@@ -26,7 +29,7 @@ namespace HealthyFood.Repositories
 
         public async Task<IEnumerable<Category>> GetAllAsync()
         {
-            return await context.Categories.AsNoTracking().ToListAsync();  
+            return await context.Categories.ToListAsync();
         }
 
         public async Task<Category> GetByIdAsync(int id)
